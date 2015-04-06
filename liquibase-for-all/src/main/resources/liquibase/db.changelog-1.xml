@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog logicalFilePath="path-independent"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    
+    <changeSet id="entidad" author="Lorgio Trinidad" failOnError="false">
+        <comment>Se crea por primera vez la tabla</comment>
+        <createTable tableName="ENTIDAD">
+            <column name="PK_ENTIDAD" type="NUMBER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NOMBRE" type="VARCHAR(250)"/>
+            <column name="FECHA_CREACION" type="DATE"/>
+        </createTable>
+        <sqlFile path="liquibase/sql/1/carga-entidades.sql" encoding="UTF-8"/>
+        <rollback>
+            <delete tableName="ENTIDAD"/>
+            <dropTable tableName="ENTIDAD"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
